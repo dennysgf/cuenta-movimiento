@@ -5,8 +5,8 @@ Este microservicio forma parte del sistema distribuido basado en microservicios,
 
 ## Arquitectura
 - **Arquitectura adoptada:** Hexagonal (Ports & Adapters)
-- **Comunicación:** Asíncrona mediante mensajería (Kafka / RabbitMQ / alternativa)
-- **Base de datos:** PostgreSQL / MongoDB (ajustar según tu caso)
+- **Comunicación:** Asíncrona mediante mensajería :Kafka 
+- **Base de datos:** PostgreSQL 
 - **Framework:** Spring Boot
 - **Gestión de dependencias:** Maven
 
