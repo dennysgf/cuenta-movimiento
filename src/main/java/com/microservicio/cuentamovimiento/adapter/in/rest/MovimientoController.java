@@ -1,8 +1,10 @@
 package com.microservicio.cuentamovimiento.adapter.in.rest;
 
 
+import com.microservicio.cuentamovimiento.adapter.in.rest.dto.MovimientoResumenDto;
 import com.microservicio.cuentamovimiento.domain.model.Movimiento;
 import com.microservicio.cuentamovimiento.domain.port.in.GestionMovimientoUseCase;
+import com.microservicio.cuentamovimiento.domain.port.in.ReporteMovimientoUseCase;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +17,11 @@ import java.util.List;
 public class MovimientoController {
 
     private final GestionMovimientoUseCase movimientoUseCase;
+    private final ReporteMovimientoUseCase reporteMovimientoUseCase;
 
-    public MovimientoController(GestionMovimientoUseCase movimientoUseCase) {
+    public MovimientoController(GestionMovimientoUseCase movimientoUseCase, ReporteMovimientoUseCase reporteMovimientoUseCase) {
         this.movimientoUseCase = movimientoUseCase;
+        this.reporteMovimientoUseCase = reporteMovimientoUseCase;
     }
 
     @PostMapping
@@ -45,4 +49,13 @@ public class MovimientoController {
                 movimientoUseCase.obtenerMovimientosPorCuentaYFechas(numeroCuenta, desde, hasta)
         );
     }
+    @GetMapping("/resumen")
+    public ResponseEntity<List<MovimientoResumenDto>> obtenerResumen(
+            @RequestParam String clienteId,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate desde,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate hasta) {
+
+        return ResponseEntity.ok(reporteMovimientoUseCase.obtenerResumen(clienteId, desde, hasta));
+    }
+
 }

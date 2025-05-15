@@ -29,7 +29,7 @@ public class GestionMovimientoServiceImplTest {
 
     @Test
     void registrarDepositoExitoso() {
-        Cuenta cuenta = new Cuenta("123456", "Ahorro", new BigDecimal("1000.00"), true, "CL001");
+        Cuenta cuenta = new Cuenta("123456", "Ahorro", new BigDecimal("1000.00"), true, "CL001", null);
         Movimiento movimiento = new Movimiento(null, LocalDate.now(), "DEPOSITO", new BigDecimal("500.00"), null, "123456");
 
         when(cuentaRepository.buscarPorNumeroCuenta("123456")).thenReturn(Optional.of(cuenta));
@@ -45,7 +45,7 @@ public class GestionMovimientoServiceImplTest {
 
     @Test
     void registrarRetiroConSaldoSuficiente() {
-        Cuenta cuenta = new Cuenta("123456", "Ahorro", new BigDecimal("1000.00"), true, "CL001");
+        Cuenta cuenta = new Cuenta("123456", "Ahorro", new BigDecimal("1000.00"), true, "CL001", null);
         Movimiento movimiento = new Movimiento(null, LocalDate.now(), "RETIRO", new BigDecimal("200.00"), null, "123456");
 
         when(cuentaRepository.buscarPorNumeroCuenta("123456")).thenReturn(Optional.of(cuenta));
@@ -59,7 +59,7 @@ public class GestionMovimientoServiceImplTest {
 
     @Test
     void registrarRetiroConSaldoInsuficiente() {
-        Cuenta cuenta = new Cuenta("123456", "Ahorro", new BigDecimal("100.00"), true, "CL001");
+        Cuenta cuenta = new Cuenta("123456", "Ahorro", new BigDecimal("100.00"), true, "CL001", null);
         Movimiento movimiento = new Movimiento(null, LocalDate.now(), "RETIRO", new BigDecimal("200.00"), null, "123456");
 
         when(cuentaRepository.buscarPorNumeroCuenta("123456")).thenReturn(Optional.of(cuenta));

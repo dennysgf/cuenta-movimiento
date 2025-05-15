@@ -1,0 +1,389 @@
+{
+	"info": {
+		"_postman_id": "6bd7ec82-9fbb-43c3-b7bf-f1d94f596a8a",
+		"name": "prueba-tecnica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21881206"
+	},
+	"item": [
+		{
+			"name": "microservicio-clientePersona",
+			"item": [
+				{
+					"name": "crear clientes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clienteId\": \"CL002\",\r\n  \"nombre\": \"Luis Lema\",\r\n  \"identificacion\": \"0234567890\",\r\n  \"genero\": \"MASCULINO\",\r\n  \"edad\": 35,\r\n  \"direccion\": \"Otavalo sn y principal\",\r\n  \"telefono\": \"098254785\",\r\n  \"contrasena\": \"1234\",\r\n  \"estado\": true\r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener todos los clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener cliente por Id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar datos clientes",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 5,\r\n    \"nombre\": \"Diana Jimenéz\",\r\n    \"edad\": 24,\r\n    \"identificacion\": \"6789012345\",\r\n    \"direccion\": \"Av. Shyris\",\r\n    \"telefono\": \"0944455667\",\r\n    \"clienteId\": \"dianav24\",\r\n    \"contrasena\": \"xyz98765\",\r\n    \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/clientes/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"clientes",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar un cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/clientes/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"clientes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "microservicio-cuentaMovimiento",
+			"item": [
+				{
+					"name": "Crear Cuenta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numeroCuenta\": 470050,\r\n  \"tipoCuenta\": \"Ahorro\",\r\n  \"saldoInicial\": 800,\r\n  \"estado\": true,\r\n  \"clienteId\": \"CL108\",\r\n  \"clienteNombre\":\"Roberto\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "localhost:8082/cuentas",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Cuenta",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"numeroCuenta\": \"478758\", \"tipoCuenta\": \"Ahorro\", \"saldoInicial\": 2500, \"estado\": true, \"clienteId\": \"CL123\"}"
+						},
+						"url": {
+							"raw": "localhost:8082/cuentas",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Cuenta por Número",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/cuentas/478758",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas",
+								"478758"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Cuentas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/cuentas",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Cuenta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/cuentas/478758",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas",
+								"478758"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar Movimiento - Depósito",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fecha\": \"2024-05-10\",\r\n  \"tipoMovimiento\": \"DEPOSITO\",\r\n  \"valor\": 100.00,\r\n  \"numeroCuenta\": \"470751\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "localhost:8082/movimientos",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar Movimiento - Retiro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"fecha\": \"2025-05-14\", \"tipoMovimiento\": \"RETIRO\", \"valor\": 300, \"numeroCuenta\": \"478758\"}"
+						},
+						"url": {
+							"raw": "localhost:8082/movimientos",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Movimientos por Cuenta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/movimientos/478758",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"movimientos",
+								"478758"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reporte de Movimientos por Fechas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/movimientos/reporte?numeroCuenta=478758&desde=2025-05-01&hasta=2025-05-31",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"movimientos",
+								"reporte"
+							],
+							"query": [
+								{
+									"key": "numeroCuenta",
+									"value": "478758"
+								},
+								{
+									"key": "desde",
+									"value": "2025-05-01"
+								},
+								{
+									"key": "hasta",
+									"value": "2025-05-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/movimientos/resumen?clienteId=CL108&desde=2024-05-01&hasta=2024-05-15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"movimientos",
+								"resumen"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "CL108"
+								},
+								{
+									"key": "desde",
+									"value": "2024-05-01"
+								},
+								{
+									"key": "hasta",
+									"value": "2024-05-15"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

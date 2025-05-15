@@ -16,4 +16,6 @@ public interface CuentaRepository {
     List<Cuenta> obtenerTodas();
 
     void eliminar(String numeroCuenta);
+
+    List<Cuenta> buscarPorClienteId(String clienteId);
 }

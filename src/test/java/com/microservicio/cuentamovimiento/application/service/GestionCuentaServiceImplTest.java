@@ -23,7 +23,7 @@ public class GestionCuentaServiceImplTest {
 
     @Test
     void crearCuentaExitosamente() {
-        Cuenta cuenta = new Cuenta("123456", "Ahorro", new BigDecimal("1000.00"), true, "CL001");
+        Cuenta cuenta = new Cuenta("123456", "Ahorro", new BigDecimal("1000.00"), true, "CL001", null);
 
         when(cuentaRepository.buscarPorNumeroCuenta(cuenta.getNumeroCuenta())).thenReturn(Optional.empty());
         when(cuentaRepository.guardar(cuenta)).thenReturn(cuenta);
@@ -37,7 +37,7 @@ public class GestionCuentaServiceImplTest {
 
     @Test
     void actualizarCuentaExistente() {
-        Cuenta cuenta = new Cuenta("123456", "Corriente", new BigDecimal("500.00"), true, "CL001");
+        Cuenta cuenta = new Cuenta("123456", "Corriente", new BigDecimal("500.00"), true, "CL001", null);
 
         when(cuentaRepository.buscarPorNumeroCuenta(cuenta.getNumeroCuenta())).thenReturn(Optional.of(cuenta));
         when(cuentaRepository.guardar(cuenta)).thenReturn(cuenta);
@@ -52,7 +52,7 @@ public class GestionCuentaServiceImplTest {
     @Test
     void listarTodasLasCuentas() {
         List<Cuenta> cuentas = List.of(
-                new Cuenta("123456", "Ahorro", new BigDecimal("500.00"), true, "CL001")
+                new Cuenta("123456", "Ahorro", new BigDecimal("500.00"), true, "CL001", null)
         );
 
         when(cuentaRepository.obtenerTodas()).thenReturn(cuentas);
@@ -65,7 +65,7 @@ public class GestionCuentaServiceImplTest {
 
     @Test
     void obtenerCuentaPorNumero() {
-        Cuenta cuenta = new Cuenta("123456", "Ahorro", new BigDecimal("500.00"), true, "CL001");
+        Cuenta cuenta = new Cuenta("123456", "Ahorro", new BigDecimal("500.00"), true, "CL001", null);
 
         when(cuentaRepository.buscarPorNumeroCuenta("123456")).thenReturn(Optional.of(cuenta));
 

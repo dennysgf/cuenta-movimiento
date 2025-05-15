@@ -15,26 +15,30 @@ import java.util.stream.Collectors;
 public class JpaCuentaRepositoryAdapter implements CuentaRepository {
 
     private final SpringCuentaJpaRepository jpaRepository;
+    private final CuentaMapper cuentaMapper;
 
-    public JpaCuentaRepositoryAdapter(SpringCuentaJpaRepository jpaRepository) {
+    public JpaCuentaRepositoryAdapter(
+            SpringCuentaJpaRepository jpaRepository,
+            CuentaMapper cuentaMapper) {
+        this.cuentaMapper = cuentaMapper;
         this.jpaRepository = jpaRepository;
     }
     @Override
     public Cuenta guardar(Cuenta cuenta) {
-        CuentaEntity entity = CuentaMapper.toEntity(cuenta);
-        return CuentaMapper.toDomain(jpaRepository.save(entity));
+        CuentaEntity entity = cuentaMapper.toEntity(cuenta);
+        return cuentaMapper.toDomain(jpaRepository.save(entity));
     }
 
     @Override
     public Optional<Cuenta> buscarPorNumeroCuenta(String numeroCuenta) {
         return jpaRepository.findById(numeroCuenta)
-                .map(CuentaMapper::toDomain);
+                .map(cuentaMapper::toDomain);
     }
 
     @Override
     public List<Cuenta> obtenerTodas() {
         return jpaRepository.findAll().stream()
-                .map(CuentaMapper::toDomain)
+                .map(cuentaMapper::toDomain)
                 .collect(Collectors.toList());
     }
 
@@ -42,4 +46,13 @@ public class JpaCuentaRepositoryAdapter implements CuentaRepository {
     public void eliminar(String numeroCuenta) {
         jpaRepository.deleteById(numeroCuenta);
     }
+
+    @Override
+    public List<Cuenta> buscarPorClienteId(String clienteId) {
+        return jpaRepository.findByClienteId(clienteId)
+                .stream()
+                .map(cuentaMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
 }

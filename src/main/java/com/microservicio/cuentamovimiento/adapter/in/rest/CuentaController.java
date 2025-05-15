@@ -29,7 +29,8 @@ public class CuentaController {
                 cuentaDto.getTipoCuenta(),
                 cuentaDto.getSaldoInicial(),
                 cuentaDto.getEstado(),
-                cuentaDto.getClienteId()
+                cuentaDto.getClienteId(),
+                null
         );
         return ResponseEntity.ok(cuentaUseCase.crearCuenta(cuenta));
     }

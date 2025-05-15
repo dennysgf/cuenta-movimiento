@@ -8,15 +8,25 @@ public class Cuenta {
     private BigDecimal saldoInicial;
     private Boolean estado;
     private String clienteId;
+    private String clienteNombre;
 
     public Cuenta() {
     }
-    public Cuenta(String numeroCuenta, String tipoCuenta, BigDecimal saldoInicial, Boolean estado, String clienteId) {
+    public Cuenta(String numeroCuenta, String tipoCuenta, BigDecimal saldoInicial, Boolean estado, String clienteId, String clienteNombre) {
         this.numeroCuenta = numeroCuenta;
         this.tipoCuenta = tipoCuenta;
         this.saldoInicial = saldoInicial;
         this.estado = estado;
         this.clienteId = clienteId;
+        this.clienteNombre = null;
+    }
+
+    public String getClienteNombre() {
+        return clienteNombre;
+    }
+
+    public void setClienteNombre(String clienteNombre) {
+        this.clienteNombre = clienteNombre;
     }
 
     public String getNumeroCuenta() {

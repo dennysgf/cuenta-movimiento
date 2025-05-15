@@ -3,6 +3,7 @@ package com.microservicio.cuentamovimiento.application.service;
 import com.microservicio.cuentamovimiento.domain.model.Cuenta;
 import com.microservicio.cuentamovimiento.domain.model.Movimiento;
 import com.microservicio.cuentamovimiento.domain.port.out.MovimientoRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +25,7 @@ public class CuentaMovimientosApplicationTest {
 
     @Test
     void crearCuentaExitosamente() {
-        Cuenta cuenta = new Cuenta("CTA100", "Ahorro", new BigDecimal("1000.00"), true, "CL100");
+        Cuenta cuenta = new Cuenta("CTA100", "Ahorro", new BigDecimal("1000.00"), true, "CL100",null);
         Cuenta creada = cuentaService.crearCuenta(cuenta);
 
         assertNotNull(creada);
@@ -33,7 +34,7 @@ public class CuentaMovimientosApplicationTest {
 
     @Test
     void registrarDepositoYActualizarSaldo() {
-        cuentaService.crearCuenta(new Cuenta("CTA101", "Ahorro", new BigDecimal("1000.00"), true, "CL101"));
+        cuentaService.crearCuenta(new Cuenta("CTA101", "Ahorro", new BigDecimal("1000.00"), true, "CL101",null));
 
         Movimiento deposito = new Movimiento(null, LocalDate.now(), "DEPOSITO", new BigDecimal("400.00"), null, "CTA101");
         Movimiento resultado = movimientoService.registrarMovimiento(deposito);
@@ -43,7 +44,7 @@ public class CuentaMovimientosApplicationTest {
 
     @Test
     void registrarRetiroYActualizarSaldo() {
-        cuentaService.crearCuenta(new Cuenta("CTA102", "Corriente", new BigDecimal("1200.00"), true, "CL102"));
+        cuentaService.crearCuenta(new Cuenta("CTA102", "Corriente", new BigDecimal("1200.00"), true, "CL102",null));
 
         Movimiento retiro = new Movimiento(null, LocalDate.now(), "RETIRO", new BigDecimal("200.00"), null, "CTA102");
         Movimiento resultado = movimientoService.registrarMovimiento(retiro);
@@ -53,7 +54,7 @@ public class CuentaMovimientosApplicationTest {
 
     @Test
     void retiroConSaldoInsuficienteLanzaExcepcion() {
-        cuentaService.crearCuenta(new Cuenta("CTA103", "Ahorro", new BigDecimal("100.00"), true, "CL103"));
+        cuentaService.crearCuenta(new Cuenta("CTA103", "Ahorro", new BigDecimal("100.00"), true, "CL103",null));
 
         Movimiento retiro = new Movimiento(null, LocalDate.now(), "RETIRO", new BigDecimal("200.00"), null, "CTA103");
 
@@ -66,7 +67,7 @@ public class CuentaMovimientosApplicationTest {
 
     @Test
     void consultarMovimientosPorCuenta() {
-        cuentaService.crearCuenta(new Cuenta("CTA105", "Ahorro", new BigDecimal("500.00"), true, "CL105"));
+        cuentaService.crearCuenta(new Cuenta("CTA105", "Ahorro", new BigDecimal("500.00"), true, "CL105",null));
         movimientoService.registrarMovimiento(new Movimiento(null, LocalDate.now(), "DEPOSITO", new BigDecimal("100.00"), null, "CTA105"));
 
         List<Movimiento> movimientos = movimientoService.obtenerMovimientosPorCuenta("CTA105");
@@ -77,13 +78,13 @@ public class CuentaMovimientosApplicationTest {
 
     @Test
     void consultarMovimientosPorCuentaYFechas() {
-        cuentaService.crearCuenta(new Cuenta("CTA108", "Ahorro", new BigDecimal("800.00"), true, "CL108"));
+        cuentaService.crearCuenta(new Cuenta("CTA301", "Ahorro", new BigDecimal("800.00"), true, "CL111",null));
 
-        movimientoService.registrarMovimiento(new Movimiento(null, LocalDate.of(2024, 5, 10), "DEPOSITO", new BigDecimal("200.00"), null, "CTA108"));
-        movimientoService.registrarMovimiento(new Movimiento(null, LocalDate.of(2024, 6, 1), "RETIRO", new BigDecimal("100.00"), null, "CTA108"));
+        movimientoService.registrarMovimiento(new Movimiento(null, LocalDate.of(2024, 5, 10), "DEPOSITO", new BigDecimal("200.00"), null, "CTA301"));
+        movimientoService.registrarMovimiento(new Movimiento(null, LocalDate.of(2024, 6, 1), "RETIRO", new BigDecimal("100.00"), null, "CTA301"));
 
         List<Movimiento> movimientos = movimientoService.obtenerMovimientosPorCuentaYFechas(
-                "CTA108", LocalDate.of(2024, 5, 1), LocalDate.of(2024, 5, 31)
+                "CTA301", LocalDate.of(2024, 5, 1), LocalDate.of(2024, 5, 31)
         );
 
         assertEquals(1, movimientos.size());
@@ -93,7 +94,7 @@ public class CuentaMovimientosApplicationTest {
     @Test
     void crearCuentaYRegistrarDeposito() {
 
-        Cuenta cuenta = new Cuenta("CTA001", "Ahorro", new BigDecimal("1000.00"), true, "CL001");
+        Cuenta cuenta = new Cuenta("CTA203", "Ahorro", new BigDecimal("1000.00"), true, "CL132",null);
         Cuenta cuentaCreada = cuentaService.crearCuenta(cuenta);
         assertNotNull(cuentaCreada);
 
